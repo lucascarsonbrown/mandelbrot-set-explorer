@@ -153,8 +153,6 @@ The Julia set **J_c** is the boundary between points that escape to infinity and
 - `base_graphics.py` - Core graphics library (based on John Zelle's graphics.py)
 - `widgets.py` - Widget library for GUI components
 - `utils.py` - Utility functions
-- `FracUtils.py` - Utilities for fractal drawing
-- `polygon.py` - Polygon graphics class
 - `SMJExplorerBackgroundResized.png` - Background image for title bar
 
 ## Credits
