@@ -2,8 +2,6 @@
 
 An interactive visualization tool for exploring the Mandelbrot set, Julia sets, and fractal dynamics built with Python and Tkinter.
 
-![alt-text](https://github.com/lucascarsonbrown/mandelbrot-set-explorer/blob/main/NLDimage2.png)
-
 ## Mathematical Background
 
 ### The Mandelbrot Set
