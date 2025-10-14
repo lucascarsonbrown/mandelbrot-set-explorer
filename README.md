@@ -1,4 +1,4 @@
-# Lucas' Super Mandelbrot Explorer (SMJExplorer)
+# Super Mandelbrot Explorer (SMJExplorer)
 
 An interactive visualization tool for exploring the Mandelbrot set, Julia sets, and fractal dynamics built with Python and Tkinter.
 
