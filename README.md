@@ -1,6 +1,31 @@
-# Super Mandelbrot Explorer (SMJExplorer)
+# Lucas' Super Mandelbrot Explorer (SMJExplorer)
 
 An interactive visualization tool for exploring the Mandelbrot set, Julia sets, and fractal dynamics built with Python and Tkinter.
+
+![The Mandelbrot set and three Julia sets](docs/gallery.png)
+
+*Top: the Mandelbrot set, with three parameter values marked. Bottom: the Julia
+set at each of them. The first two values lie inside the Mandelbrot set and
+give connected Julia sets; the third lies outside and shatters into
+disconnected dust. Regenerate with `python3 docs/render_gallery.py`.*
+
+## Running it
+
+```bash
+git clone https://github.com/lucascarsonbrown/mandelbrot-set-explorer.git
+cd mandelbrot-set-explorer
+python3 SMJExplorer.py
+```
+
+There are no third-party dependencies — the explorer is pure standard library,
+rendering through Tkinter and a graphics layer included in the repo. You need
+Python 3 built with Tkinter support, which ships with the python.org installers
+for macOS and Windows; on Debian/Ubuntu it is a separate package
+(`sudo apt install python3-tk`).
+
+The one exception is `docs/render_gallery.py`, which produces the image above
+and is documentation tooling rather than part of the application. It needs
+NumPy and Matplotlib, and nothing in the explorer imports it.
 
 ## Mathematical Background
 
@@ -153,7 +178,10 @@ The Julia set **J_c** is the boundary between points that escape to infinity and
 - `base_graphics.py` - Core graphics library (based on John Zelle's graphics.py)
 - `widgets.py` - Widget library for GUI components
 - `utils.py` - Utility functions
+- `FracUtils.py` - Utilities for fractal drawing
+- `polygon.py` - Polygon graphics class
 - `SMJExplorerBackgroundResized.png` - Background image for title bar
+- `docs/render_gallery.py` - Generates the README image (NumPy/Matplotlib; not used by the app)
 
 ## Credits
 
