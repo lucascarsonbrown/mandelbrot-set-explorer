@@ -9,7 +9,13 @@ set at each of them. The first two values lie inside the Mandelbrot set and
 give connected Julia sets; the third lies outside and shatters into
 disconnected dust. Regenerate with `python3 docs/render_gallery.py`.*
 
-## Running it
+## Two ways to run it
+
+There is a desktop app and a browser app. They share the mathematics and
+nothing else — the desktop version draws through Tkinter, which cannot run on
+a server, so the web version is a separate front end rather than a port.
+
+### Desktop — `SMJExplorer.py`
 
 ```bash
 git clone https://github.com/lucascarsonbrown/mandelbrot-set-explorer.git
@@ -17,15 +23,35 @@ cd mandelbrot-set-explorer
 python3 SMJExplorer.py
 ```
 
-There are no third-party dependencies — the explorer is pure standard library,
-rendering through Tkinter and a graphics layer included in the repo. You need
-Python 3 built with Tkinter support, which ships with the python.org installers
-for macOS and Windows; on Debian/Ubuntu it is a separate package
-(`sudo apt install python3-tk`).
+No third-party dependencies at all: pure standard library, rendering through
+Tkinter and a graphics layer included in the repo. You need Python 3 built with
+Tkinter support, which ships with the python.org installers for macOS and
+Windows; on Debian/Ubuntu it is a separate package (`sudo apt install
+python3-tk`).
 
-The one exception is `docs/render_gallery.py`, which produces the image above
-and is documentation tooling rather than part of the application. It needs
-NumPy and Matplotlib, and nothing in the explorer imports it.
+### Browser — `app.py`
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+Two panels side by side. Click the Mandelbrot set to choose a parameter and the
+Julia set for it renders immediately, with a verdict underneath saying whether
+that parameter lies inside the set and therefore whether the Julia set is
+connected. Also included: click-to-zoom on either panel, an iteration slider,
+four palettes, period colouring of the bulbs, and presets for the named
+parameters (Douady rabbit, basilica, dendrite, San Marco, Siegel disk, and one
+outside the set for contrast).
+
+Rendering is vectorised NumPy and cached per view, because a free hosting
+container is one modest CPU and every widget change reruns the script. Note
+that `escape_time` takes the Julia parameter as a `(re, im)` tuple rather than
+a `complex` — Streamlit's cache cannot hash `complex`, and passing one throws
+rather than silently degrading.
+
+`docs/render_gallery.py` is documentation tooling for the image above, not part
+of either app.
 
 ## Mathematical Background
 
@@ -172,9 +198,26 @@ The Julia set **J_c** is the boundary between points that escape to infinity and
 - **Zoom -**: Zoom out to see a wider view
 - **Iterations Slider**: Adjust the maximum number of iterations for rendering
 
+## Publishing the browser app
+
+Streamlit Community Cloud hosts Python apps at a public `*.streamlit.app` URL.
+GitHub Pages cannot — it serves static files and this app needs a Python
+process.
+
+1. Sign in to [Streamlit Community Cloud](https://share.streamlit.io/) with GitHub.
+2. **Create app** → repository `lucascarsonbrown/mandelbrot-set-explorer`,
+   branch `main`, entrypoint `app.py`.
+3. Under advanced settings choose Python **3.11**. No secrets are needed.
+4. Deploy, then put the assigned URL at the top of this README and in the
+   repository's **About → Website** field.
+
+The host installs `requirements.txt` and reads `.streamlit/config.toml`. Later
+pushes to `main` redeploy automatically.
+
 ## File Structure
 
-- `SMJExplorer.py` - Main application file
+- `SMJExplorer.py` - Desktop application (Tkinter)
+- `app.py` - Browser application (Streamlit)
 - `base_graphics.py` - Core graphics library (based on John Zelle's graphics.py)
 - `widgets.py` - Widget library for GUI components
 - `utils.py` - Utility functions

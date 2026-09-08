@@ -211,3 +211,6 @@ __marimo__/
 
 # Claude Code
 .claude/
+
+# Streamlit local state
+.streamlit/secrets.toml
