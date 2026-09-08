@@ -1,6 +1,8 @@
 # Lucas' Super Mandelbrot Explorer (SMJExplorer)
 
-An interactive visualization tool for exploring the Mandelbrot set, Julia sets, and fractal dynamics built with Python and Tkinter.
+An interactive visualization tool for exploring the Mandelbrot set, Julia sets, and fractal dynamics.
+
+**[Open the live explorer](https://mandelbrot-set-explorer-ghcmjqxxyp8pgpghtnlqdx.streamlit.app/)** — click the Mandelbrot set to pick a parameter and watch its Julia set appear beside it.
 
 ![The Mandelbrot set and three Julia sets](docs/gallery.png)
 
@@ -213,6 +215,9 @@ process.
 
 The host installs `requirements.txt` and reads `.streamlit/config.toml`. Later
 pushes to `main` redeploy automatically.
+
+The current deployment is at
+[https://mandelbrot-set-explorer-ghcmjqxxyp8pgpghtnlqdx.streamlit.app/](https://mandelbrot-set-explorer-ghcmjqxxyp8pgpghtnlqdx.streamlit.app/).
 
 ## File Structure
 
